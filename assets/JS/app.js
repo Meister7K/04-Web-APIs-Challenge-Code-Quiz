@@ -1,3 +1,14 @@
+// !Global Variables
+var startBtn = document.querySelector(".start");
+
+// !Event Listeners
+
+// !functions
+function start(){
+    addEventListener("click", startBtn){
+        
+    }
+}
 
 
 

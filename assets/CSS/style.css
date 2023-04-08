@@ -1,4 +1,16 @@
-/* El Selectors */
+/* ! @Keyframes*/
+@keyframes shake {
+    0% { transform: rotate(0deg);}
+    15% {transform: rotate(10deg);}
+    30% {transform: rotate(20deg);}
+    45% {transform: rotate(10deg);}
+    60% {transform: rotate(0deg);}
+    75% {transform: rotate(-10deg);}
+    90% {transform: rotate(-20deg);}
+    100% {transform: rotate(-10deg);}
+}
+
+/* !El Selectors */
 * {
   text-align: center;
   margin: 0 auto;
@@ -31,6 +43,13 @@ button {
     cursor: pointer;
     background-color: rgb(80, 77, 77);
     border-radius: 10%;
+}
+button:hover{
+    background-color: gray;
+    animation-name: shake;
+    animation-duration: .1s;
+    animation-iteration-count: infinite;
+
 }
 /* Class Selectors */
 
