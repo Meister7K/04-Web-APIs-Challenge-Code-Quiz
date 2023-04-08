@@ -8,25 +8,31 @@
         <title>The ER Quiz</title>
     </head>
     <body>
-        <header class="title">
+        <header id="title">
             <h1>Welcome to The Elden Ring Quiz</h1>
             <h4>Press start Maidenless</h4>
-            <button class="start">Start</button>
-            <div class="score-container">
-                <button class="score-btn">Check Highscores</button>
-            </div>
+            <button id="start-btn">Start</button>
+            <button id="highscore-btn">Check Highscores</button>
+<!-- !High scores -->
         </header>
-<!-- Timer -->
-        <div class="timer-container">
-
+        <div class="hidden" id="score-container">
+                <ul id="score-list"></ul>
+                <button onclick="window.location.reload()" id="return">home</button>
+            </div>
+<!-- !Timer -->
+        <div  class="hidden" id="timer-container">
+            <h3 id="timer"></h3>
         </div>
-<!-- High scores button -->
+
         
-<!-- Questions appear here -->
+<!-- !Questions appear here -->
         <section class="container">
                 <div class="question-container">
-
-
+                    <h2 id="question"></h2>
+                    <button id="answer-a"></button>
+                    <button id="answer-b"></button>
+                    <button id="answer-c"></button>
+                    <button id="answer-d"></button>
                 </div>
         </section>
 

@@ -9,14 +9,16 @@
     90% {transform: rotate(-20deg);}
     100% {transform: rotate(-10deg);}
 }
-
+/* ! Root */
+:root {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 /* !El Selectors */
 * {
   text-align: center;
   margin: 0 auto;
   color:white;
   /* border: 1px solid white; */
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-shadow: -1px -1px 0 black, 1px 1px 0 black, -1px 1px black, 1px -1px black;
 }
 header {
@@ -45,13 +47,21 @@ button {
     border-radius: 10%;
 }
 button:hover{
-    background-color: gray;
+     background-color: gray;
+}
+header button:hover{
     animation-name: shake;
     animation-duration: .1s;
     animation-iteration-count: infinite;
 }
-/* Class Selectors */
+/* !Class Selectors */
+.hidden{
+    display: none;
+}
+.visible {
+    display: flex;
+}
 
-/* ID Selectors */
+/* !ID Selectors */
 
-/* Media Query */
+/* !Media Query */
