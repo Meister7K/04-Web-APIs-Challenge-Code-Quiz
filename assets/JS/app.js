@@ -17,7 +17,7 @@ var answerSlotC = document.querySelector("#answer-slotC");
 var answerSlotD = document.querySelector("#answer-slotD");
 var index = 0;
 // !Objects
-var questions = [
+var questionsList = [
   {
     question: "What is thy maiden's name?",
     answerA: "Fia",
@@ -64,7 +64,7 @@ var questions = [
 // !Event Listeners
 startBtn.addEventListener("click", start);
 highscoreBtn.addEventListener("click", showScores);
-// questionContainer.addEventListener("click", add);
+questionContainer.addEventListener("click", add);
 
 // !functions
 function start() {
@@ -75,15 +75,21 @@ function start() {
   getQuestion();
 }
 
+ function add() {
+    index ++;
+}
 
 function getQuestion() {
-  questionDisplay.innerHTML = questions[index].question;
-  answerSlotA.innerHTML = questions[index].answerA;
-  answerSlotB.innerHTML = questions[index].answerB;
-  answerSlotC.innerHTML = questions[index].answerC;
-  answerSlotD.innerHTML = questions[index].answerD;
-  var correctAnswer = questions[index].solution;
-}
+        // var index = 0;
+        questionDisplay.innerText = questionsList[index].question;
+        answerSlotA.innerText = questionsList[index].answerA;
+        answerSlotB.innerText = questionsList[index].answerB;
+        answerSlotC.innerText = questionsList[index].answerC;
+        answerSlotD.innerText = questionsList[index].answerD;
+        var correctAnswer = questionsList[index].solution;
+       
+        
+    } 
 
 function showScores() {
   header.setAttribute("class", "hidden");
@@ -110,7 +116,7 @@ function youDied() {
 }
 
 console.log(scoreContainer);
-console.log(index);
+// console.log(index);
 
 // ! when i click start,
 // i need the first question to pop up with 4 answers
