@@ -26,15 +26,15 @@
 
         
 <!-- !Questions appear here -->
-        <section class="container">
-                <div id="question-container">
-                    <h2 id="question"></h2>
-                    <button id="answer-a"></button>
-                    <button id="answer-b"></button>
-                    <button id="answer-c"></button>
-                    <button id="answer-d"></button>
-                </div>
-        </section>
+        <div class="hidden" id="question-container">
+            <h2 id="question-display"></h2>
+            <div id="answer-container">
+                <button class="answers" id="answer-slotA"></button>
+                <button class="answers" id="answer-slotB"></button>
+                <button class="answers" id="answer-slotC"></button>
+                <button class="answers" id="answer-slotD"></button>
+            </div>
+        </div>
 
         <script src="./assets/JS/app.js"></script>
     </body>
