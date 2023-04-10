@@ -95,8 +95,7 @@ function displayQuestion() {
 // });
 
 function answerQuestion(){
-   answerContainer.addEventListener("click", recordAnswer);
-   function recordAnswer(){
+//    answerContainer.addEventListener("click", recordAnswer);
     console.log(answer);
     console.log(correctAnswer);
     if(answer !== correctAnswer){
@@ -108,9 +107,8 @@ function answerQuestion(){
         displayQuestion();
     }else { 
         // TODO 
-        endQuiz();
+        // endQuiz();
     }
-}
 }
 
 
