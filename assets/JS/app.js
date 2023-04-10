@@ -4,25 +4,27 @@ var header = document.querySelector("#title");
 var highscoreBtn = document.querySelector("#highscore-btn");
 var scoreContainer = document.querySelector("#score-container");
 var homeBtn = document.querySelector("#return");
+var loser = document.querySelector("#loser");
 var scoreList;
 var timer = 50;
 var timerContainer = document.querySelector("#timer-container");
 var questionContainer = document.querySelector("#question-container");
 var timerElement = document.querySelector("#timer");
 var questionDisplay = document.querySelector("#question-display"); //question
-var answerBtns = Array.from(document.getElementsByClassName("answer-buttons"));
-var answerContainer = document.querySelector("#answer-container");//choices
+var answerBtns = Array.from(document.getElementsByClassName("answer-buttons"));//choices
+var answerContainer = document.querySelector("#answer-container");
 var answerSlotA = document.querySelector("#answer-slotA");
 var answerSlotB = document.querySelector("#answer-slotB");
 var answerSlotC = document.querySelector("#answer-slotC");
 var answerSlotD = document.querySelector("#answer-slotD");
-var index=0
+var index = 0;
 var correctAnswer;
 var currentQuestion = {};//currentQuestion
-var availableQuestions =[];
-var answer;
+var availableQuestions =[];//availableQuestions
+// var answer;
 var score;
-var acceptingAnswers = true;
+// var acceptingAnswers = true; //acceptingAnswers
+// var questionCounter = 0;//questionCounter
 
 
 // !Objects
@@ -53,12 +55,12 @@ var questionsList = [
     answers: ["Godrick","Godwyn","Malenia","Gravity"],
     solution: "Godwyn"
   },
-];
+];//questions
 
 // !Event Listeners
 startBtn.addEventListener("click", start);
 highscoreBtn.addEventListener("click", showScores);
-answerContainer.addEventListener("click", answerQuestion);
+// answerContainer.addEventListener("click", answerQuestion);
 // answerContainer.addEventListener("click",recordAnswer)
 
 // !functions
@@ -70,11 +72,13 @@ function start(e) {
   timerContainer.setAttribute("class", "visible");
   questionContainer.setAttribute("class", "visible");
   index = 0;
+  availableQuestions = [...questionsList];
   startTimer();
   displayQuestion();
+  
 }
 
-// !Initial display function
+// !Initial display function gnq
 function displayQuestion() {
     currentQuestion = questionsList[index];
   questionDisplay.innerText = currentQuestion.question;
@@ -83,34 +87,32 @@ function displayQuestion() {
   answerSlotC.innerText = currentQuestion.answers[2];
   answerSlotD.innerText = currentQuestion.answers[3];
    correctAnswer = currentQuestion.solution;
-   console.log(currentQuestion);
-   console.log(correctAnswer);
+//    console.log(currentQuestion);
+//    console.log(correctAnswer);
 }
 
 // !answer question function
-// answerBtns.forEach((button) => {
-//     button.addEventListener("click", (e) => {
-//         if (!)
-//     })
-// });
-
-function answerQuestion(){
-//    answerContainer.addEventListener("click", recordAnswer);
-    console.log(index);
-    console.log(correctAnswer);
-    console.log(questionsList.length);
-    if(answer !== correctAnswer){
-        // timer -=10;
-    } 
-    index++;
+answerBtns.forEach((button) => {
+button.addEventListener("click", (e) => {
+    console.log(button.textContent);
+    if(button.textContent !== correctAnswer){
+timer -=10;
+} 
+index++;
+if(index < questionsList.length){
     displayQuestion();
-    if(index < questionsList.length-1){
-        displayQuestion();
-    } else { 
-        // TODO 
-        endQuiz();
-    }
+} else { 
+    // TODO 
+    endQuiz();
 }
+    // if(button.textContent === correctAnswer){
+
+    
+    })
+});
+   
+    
+
 
 
 // ! scoreboard function
@@ -124,10 +126,14 @@ function startTimer() {
   var time = setInterval(function () {
     timer--;
     timerElement.textContent = "Time Remaining: " + timer;
+    // if (endQuiz){
+    //     timer.value = score;
+    //     clearInterval(time);
+    // } else 
     if (timer <= 0) {
-      // TODO
+      clearInterval(time);
       youDied();
-      return "";
+    //   return "";
     } 
   }, 1000);
 }
@@ -135,7 +141,10 @@ function startTimer() {
 // !lose function
 function youDied() {
   timerContainer.setAttribute("class", "hidden");
+    loser.setAttribute("class","visible");
   questionContainer.setAttribute("class", "hidden");
+  var background = document.body;
+  background.setAttribute("background-image","url(../../assets/Images/you-died.gif");
 //   TODO add you died background w home or retry button 
 }
 
@@ -145,7 +154,7 @@ function endQuiz(){
     // clearInterval(time);
 }
 
-console.log(answer);
+// console.log(answer);
 console.log(index);
 console.log(answerBtns);
 
