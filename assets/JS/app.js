@@ -1,5 +1,5 @@
 // !Global Variables
-var startBtn = document.querySelector("#start-btn");
+var startBtn = document.querySelector("#start-btn"); 
 var header = document.querySelector("#title");
 var highscoreBtn = document.querySelector("#highscore-btn");
 var scoreContainer = document.querySelector("#score-container");
@@ -9,18 +9,20 @@ var timer = 50;
 var timerContainer = document.querySelector("#timer-container");
 var questionContainer = document.querySelector("#question-container");
 var timerElement = document.querySelector("#timer");
-var questionDisplay = document.querySelector("#question-display");
-var answerBtns = document.getElementsByClassName("answer-buttons");
-var answerContainer = document.querySelector("#answer-container");
+var questionDisplay = document.querySelector("#question-display"); //question
+var answerBtns = Array.from(document.getElementsByClassName("answer-buttons"));
+var answerContainer = document.querySelector("#answer-container");//choices
 var answerSlotA = document.querySelector("#answer-slotA");
 var answerSlotB = document.querySelector("#answer-slotB");
 var answerSlotC = document.querySelector("#answer-slotC");
 var answerSlotD = document.querySelector("#answer-slotD");
-var index = 0;
+var index=0
 var correctAnswer;
-var currentQuestion;
+var currentQuestion = {};//currentQuestion
+var availableQuestions =[];
 var answer;
 var score;
+var acceptingAnswers = true;
 
 
 // !Objects
@@ -57,22 +59,24 @@ var questionsList = [
 startBtn.addEventListener("click", start);
 highscoreBtn.addEventListener("click", showScores);
 answerContainer.addEventListener("click", answerQuestion);
-// questionContainer.addEventListener("click",recordAnswer)
+// answerContainer.addEventListener("click",recordAnswer)
 
 // !functions
 
 // !Start game function
-function start() {
+function start(e) {
+    e.preventDefault();
   header.setAttribute("class", "hidden");
   timerContainer.setAttribute("class", "visible");
   questionContainer.setAttribute("class", "visible");
+  index = 0;
   startTimer();
   displayQuestion();
 }
 
 // !Initial display function
 function displayQuestion() {
-     currentQuestion = questionsList[index];
+    currentQuestion = questionsList[index];
   questionDisplay.innerText = currentQuestion.question;
   answerSlotA.innerText = currentQuestion.answers[0];
   answerSlotB.innerText = currentQuestion.answers[1];
@@ -93,21 +97,23 @@ function displayQuestion() {
 function answerQuestion(){
    answerContainer.addEventListener("click", recordAnswer);
    function recordAnswer(){
+    console.log(answer);
+    console.log(correctAnswer);
     if(answer !== correctAnswer){
         // timer -=10;
     } 
     index++;
     displayQuestion();
-    if(currentQuestion < questionsList.length){
-        displayQuestion(currentQuestion);
+    if(currentQuestion <= questionsList.length){
+        displayQuestion();
     }else { 
         // TODO 
-        function endQuiz() {
-        return ""; 
-        } 
+        endQuiz();
     }
 }
 }
+
+
 // ! scoreboard function
 function showScores() {
   header.setAttribute("class", "hidden");
@@ -130,8 +136,13 @@ function startTimer() {
 function youDied() {
   timerContainer.setAttribute("class", "hidden");
   questionContainer.setAttribute("class", "hidden");
+//   TODO add you died background w home or retry button 
 }
-
+// ! end quiz function
+function endQuiz(){
+    questionContainer.setAttribute("class", "hidden");
+    // clearInterval(time);
+}
 
 console.log(answer);
 console.log(index);

@@ -11,15 +11,17 @@
 }
 /* ! Root */
 :root {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   --text-border-black:-1px -1px 0 black, 1px 1px 0 black, -1px 1px black, 1px -1px black;
+   --text-border-smoke: -1px -1px 0 whitesmoke, 1px 1px 0 whitesmoke, -1px 1px whitesmoke, 1px -1px whitesmoke;
 }
 /* !El Selectors */
 * {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
   text-align: center;
   /* margin: 0 auto; */
   color:white;
   /* border: 1px solid white; */
-  text-shadow: -1px -1px 0 black, 1px 1px 0 black, -1px 1px black, 1px -1px black;
+  text-shadow: var(--text-border-black);
 }
 header {
     display: flex;
@@ -32,7 +34,7 @@ header {
     align-items: center;
 }
 body {
-  background-image: url(/assets/Images/Mansion.jpg);
+  background-image: url(../assets/Images/Mansion.jpg);
   margin: 0;
   padding: 0;
   background-repeat: no-repeat;
@@ -48,6 +50,9 @@ button {
 }
 button:hover{
      background-color: gray;
+}
+button:active {
+    text-shadow: var(--text-border-smoke);
 }
 
 /* !Class Selectors */
@@ -92,7 +97,6 @@ button:hover{
     white-space: normal;
     padding-bottom: 5dvh;
 }
-#answer-container{
-
-}
+/* #answer-container{
+} */
 /* !Media Query */
