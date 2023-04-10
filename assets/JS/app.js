@@ -10,116 +10,136 @@ var timerContainer = document.querySelector("#timer-container");
 var questionContainer = document.querySelector("#question-container");
 var timerElement = document.querySelector("#timer");
 var questionDisplay = document.querySelector("#question-display");
-var answers = document.getElementsByClassName("answers");
+var answerBtns = document.getElementsByClassName("answer-buttons");
+var answerContainer = document.querySelector("#answer-container");
 var answerSlotA = document.querySelector("#answer-slotA");
 var answerSlotB = document.querySelector("#answer-slotB");
 var answerSlotC = document.querySelector("#answer-slotC");
 var answerSlotD = document.querySelector("#answer-slotD");
 var index = 0;
+var correctAnswer;
+var currentQuestion;
+var answer;
+var score;
+
+
 // !Objects
 var questionsList = [
   {
     question: "What is thy maiden's name?",
-    answerA: "Fia",
-    answerB: "Melina",
-    answerC: "Hyetta",
-    answerD: "I am maidenless",
-    solution: 2,
+    answers: ["Fia","Melina","Hyetta","I am maidenless"],
+    solution: "Melina"
   },
   {
     question:
       "How many player deaths have there been in Elden Ring in the first year since launch?",
-    answerA: "700,000-800,000",
-    answerB: "500-600 million",
-    answerC: "9 billion +",
-    answerD: "I've never died once",
-    solution: 3,
+    answers: ["700,000-800,000","500-600 million","9 billion +","I've never died once"],
+    solution: "9 billion +"
   },
   {
     question: "Which boss has the highest body count?",
-    answerA: "Malenia, Blade of Miquella",
-    answerB: "Starscourge Radahn",
-    answerC: "Margit, The Fell Omen",
-    answerD: "Radagon of The Golden Order",
-    solution: 1,
+    answers: ["Malenia, Blade of Miquella","Starscourge Radahn","Margit, The Fell Omen","Radagon of The Golden Order"],
+    solution: "Malenia, Blade of Miquella"
   },
   {
     question: "What % of players deaths are caused by falling?",
-    answerA: "2%",
-    answerB: "69%",
-    answerC: "21%",
-    answerD: "14%",
-    solution: 4,
+    answers: ["2%","69%","21%","14%"],
+    solution: "14%"
   },
   {
     question: "Who is The Prince of Death?",
-    answerA: "Godrick",
-    answerB: "Godwyn",
-    answerC: "Malenia",
-    answerD: "Gravity",
-    solution: 2,
+    answers: ["Godrick","Godwyn","Malenia","Gravity"],
+    solution: "Godwyn"
   },
 ];
 
 // !Event Listeners
 startBtn.addEventListener("click", start);
 highscoreBtn.addEventListener("click", showScores);
-questionContainer.addEventListener("click", add);
+answerContainer.addEventListener("click", answerQuestion);
+// questionContainer.addEventListener("click",recordAnswer)
 
 // !functions
+
+// !Start game function
 function start() {
   header.setAttribute("class", "hidden");
   timerContainer.setAttribute("class", "visible");
   questionContainer.setAttribute("class", "visible");
   startTimer();
-  getQuestion();
+  displayQuestion();
 }
 
- function add() {
-    index ++;
+// !Initial display function
+function displayQuestion() {
+     currentQuestion = questionsList[index];
+  questionDisplay.innerText = currentQuestion.question;
+  answerSlotA.innerText = currentQuestion.answers[0];
+  answerSlotB.innerText = currentQuestion.answers[1];
+  answerSlotC.innerText = currentQuestion.answers[2];
+  answerSlotD.innerText = currentQuestion.answers[3];
+   correctAnswer = currentQuestion.solution;
+   console.log(currentQuestion);
+   console.log(correctAnswer);
 }
 
-function getQuestion() {
-        // var index = 0;
-        questionDisplay.innerText = questionsList[index].question;
-        answerSlotA.innerText = questionsList[index].answerA;
-        answerSlotB.innerText = questionsList[index].answerB;
-        answerSlotC.innerText = questionsList[index].answerC;
-        answerSlotD.innerText = questionsList[index].answerD;
-        var correctAnswer = questionsList[index].solution;
-       
-        
+// !answer question function
+// answerBtns.forEach((button) => {
+//     button.addEventListener("click", (e) => {
+//         if (!)
+//     })
+// });
+
+function answerQuestion(){
+   answerContainer.addEventListener("click", recordAnswer);
+   function recordAnswer(){
+    if(answer !== correctAnswer){
+        // timer -=10;
     } 
-
+    index++;
+    displayQuestion();
+    if(currentQuestion < questionsList.length){
+        displayQuestion(currentQuestion);
+    }else { 
+        // TODO 
+        function endQuiz() {
+        return ""; 
+        } 
+    }
+}
+}
+// ! scoreboard function
 function showScores() {
   header.setAttribute("class", "hidden");
   scoreContainer.setAttribute("class", "visible");
   console.log(scoreList);
 }
-
+// !Timer
 function startTimer() {
   var time = setInterval(function () {
     timer--;
     timerElement.textContent = "Time Remaining: " + timer;
-
-    if (timer === 0) {
+    if (timer <= 0) {
       // TODO
       youDied();
       return "";
-    }
+    } 
   }, 1000);
 }
-
+// !lose function
 function youDied() {
   timerContainer.setAttribute("class", "hidden");
   questionContainer.setAttribute("class", "hidden");
 }
 
-console.log(scoreContainer);
-// console.log(index);
+
+console.log(answer);
+console.log(index);
+console.log(answerBtns);
+
 
 // ! when i click start,
-// i need the first question to pop up with 4 answers
+//* i need the first question to pop up with 4 answers
 //* i need the timer (50s) to appear and start.
 //* i need the header to disappear.
 //  ! when I click an answer,

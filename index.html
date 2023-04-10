@@ -15,7 +15,7 @@
             <button id="highscore-btn">Check Highscores</button>
 <!-- !High scores -->
         </header>
-        <div class="hidden" id="score-container">
+            <div class="hidden" id="score-container">
                 <ul id="score-list"></ul>
                 <button onclick="window.location.reload()" id="return">home</button>
             </div>
@@ -27,12 +27,15 @@
         
 <!-- !Questions appear here -->
         <div class="hidden" id="question-container">
-            <h2 id="question-display"></h2>
+            <h1 id="question-display"></h1>
             <div id="answer-container">
-                <button class="answers" id="answer-slotA"></button>
-                <button class="answers" id="answer-slotB"></button>
-                <button class="answers" id="answer-slotC"></button>
-                <button class="answers" id="answer-slotD"></button>
+                <button class="answer-buttons" id="answer-slotA" data-number="1"></button>
+                <button class="answer-buttons" id="answer-slotB" data-number="2"></button>
+                <button class="answer-buttons" id="answer-slotC" data-number="3"></button>
+                <button class="answer-buttons" id="answer-slotD" data-number="4"></button>
+            </div>
+            <div id="solution-container">
+                <p id="solution-note"></p>
             </div>
         </div>
 
