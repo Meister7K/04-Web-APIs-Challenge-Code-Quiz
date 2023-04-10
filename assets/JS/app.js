@@ -96,18 +96,19 @@ function displayQuestion() {
 
 function answerQuestion(){
 //    answerContainer.addEventListener("click", recordAnswer);
-    console.log(answer);
+    console.log(index);
     console.log(correctAnswer);
+    console.log(questionsList.length);
     if(answer !== correctAnswer){
         // timer -=10;
     } 
     index++;
     displayQuestion();
-    if(currentQuestion <= questionsList.length){
+    if(index < questionsList.length-1){
         displayQuestion();
-    }else { 
+    } else { 
         // TODO 
-        // endQuiz();
+        endQuiz();
     }
 }
 
@@ -130,12 +131,14 @@ function startTimer() {
     } 
   }, 1000);
 }
+
 // !lose function
 function youDied() {
   timerContainer.setAttribute("class", "hidden");
   questionContainer.setAttribute("class", "hidden");
 //   TODO add you died background w home or retry button 
 }
+
 // ! end quiz function
 function endQuiz(){
     questionContainer.setAttribute("class", "hidden");
