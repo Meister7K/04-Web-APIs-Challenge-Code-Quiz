@@ -23,12 +23,21 @@ var answerSlotA = document.querySelector("#answer-slotA");
 var answerSlotB = document.querySelector("#answer-slotB");
 var answerSlotC = document.querySelector("#answer-slotC");
 var answerSlotD = document.querySelector("#answer-slotD");
+var body = document.body;
 var index = 0;
 var correctAnswer;
 var currentQuestion = {};
 var availableQuestions = [];
 var score;
 var time;
+var images = [
+    "Drake.jpg",
+    "ERCastle.png",
+    "HLoux.jpg",
+    "Godrick.jpg",
+    "Radahn.jpg",
+    "Maiden.jpg"
+];
 
 // !Objects
 var questionsList = [
@@ -103,6 +112,7 @@ function displayQuestion() {
   answerSlotC.innerText = currentQuestion.answers[2];
   answerSlotD.innerText = currentQuestion.answers[3];
   correctAnswer = currentQuestion.solution;
+  body.style.backgroundImage = `url(../../assets/Images/${images[index]}`
   //    console.log(currentQuestion);
   //    console.log(correctAnswer);
 }
@@ -117,6 +127,7 @@ answerBtns.forEach((button) => {
     } else {
       solutionNote.innerText = "Right";
     }
+    // body.style.backgroundImage = `url(../../assets/Images/${images[index]}`
     index++;
     if (index < questionsList.length) {
       displayQuestion();
@@ -162,18 +173,25 @@ function youDied() {
 
 // ! end quiz function
 function endQuiz() {
+    index++;
+    body.style.backgroundImage = `url(../../assets/Images/Maiden.jpg`
   clearInterval(time);
   score = timer;
+  if(score <=0){
+    youDied();
+  } else {
   console.log(score);
   questionContainer.setAttribute("class", "hidden");
   victoryContainer.setAttribute("class", "visible");
   scoreInput.innerText = "your final score: " + score;
   timerContainer.setAttribute("class", "hidden");
+  }
 }
 // ! Submit form function
 
 function submit(e) {
   e.preventDefault();
+  index++;
   if (playerName.value.trim() == "") {
     alert("please insert at least one character");
     return;
@@ -192,6 +210,7 @@ function submit(e) {
     localStorage.setItem("highScores", JSON.stringify(scoresList));
   }
   printHighscores();
+
 }
 
 // ! Pull Leaderboard
@@ -215,6 +234,7 @@ function printHighscores(){
         scoreList.append(li);
     }
     scoreContainer.setAttribute("class", "visible");
+    victoryContainer.setAttribute("class", "hidden");
 }
 
 // console.log(answer);
