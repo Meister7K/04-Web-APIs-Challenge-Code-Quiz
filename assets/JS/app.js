@@ -8,7 +8,8 @@ var loser = document.querySelector("#loser");
 var solutionNote = document.querySelector("#solution-note");
 var victoryContainer = document.querySelector("#victory-container");
 var scoreInput = document.querySelector("#score-input");
-var scoreList;
+var scoreList = document.querySelector("#score-list");
+var scoresList;
 var timer = 75;
 var timerContainer = document.querySelector("#timer-container");
 var questionContainer = document.querySelector("#question-container");
@@ -24,8 +25,8 @@ var answerSlotC = document.querySelector("#answer-slotC");
 var answerSlotD = document.querySelector("#answer-slotD");
 var index = 0;
 var correctAnswer;
-var currentQuestion = {}; 
-var availableQuestions = []; 
+var currentQuestion = {};
+var availableQuestions = [];
 var score;
 var time;
 
@@ -67,19 +68,23 @@ var questionsList = [
     answers: ["Godrick", "Godwyn", "Malenia", "Gravity"],
     solution: "Godwyn",
   },
-]; 
+];
 
+// if (localStorage.getItem("highScores")) {
+//     scoresList = JSON.parse(localStorage.getItem("highScores"));
+//   } else {
+//     scoresList = [];
+//   }
 // !Event Listeners
 startBtn.addEventListener("click", start);
 highscoreBtn.addEventListener("click", showScores);
 submitBtn.addEventListener("click", submit);
 
-
 // !functions
 
 // !Start game function
 function start(e) {
-  e.preventDefault();
+  e.stopPropagation();
   header.setAttribute("class", "hidden");
   timerContainer.setAttribute("class", "visible");
   questionContainer.setAttribute("class", "visible");
@@ -108,9 +113,9 @@ answerBtns.forEach((button) => {
     console.log(button.textContent);
     if (button.textContent !== correctAnswer) {
       timer -= 15;
-        solutionNote.innerText = "Wrong";
+      solutionNote.innerText = "Wrong";
     } else {
-        solutionNote.innerText ="Right";
+      solutionNote.innerText = "Right";
     }
     index++;
     if (index < questionsList.length) {
@@ -122,20 +127,24 @@ answerBtns.forEach((button) => {
 });
 
 // ! scoreboard function
+if (localStorage.getItem("highScores")) {
+  scoresList = JSON.parse(localStorage.getItem("highScores"));
+} else {
+  scoresList = [];
+}
+
 function showScores() {
   header.setAttribute("class", "hidden");
   scoreContainer.setAttribute("class", "visible");
-  console.log(scoreList);
+  
+//   console.log(scoreList);
 }
 // !Timer
 function startTimer() {
   time = setInterval(function () {
     timer--;
     timerElement.textContent = "Time Remaining: " + timer;
-    // if (endQuiz){
-    //     timer.value = score;
-    //     clearInterval(time);
-    // }
+
     if (timer <= 0) {
       clearInterval(time);
       youDied();
@@ -149,43 +158,68 @@ function youDied() {
   timerContainer.setAttribute("class", "hidden");
   loser.setAttribute("class", "visible");
   questionContainer.setAttribute("class", "hidden");
-  //   TODO add you died background w home or retry button
 }
-
 
 // ! end quiz function
 function endQuiz() {
-    clearInterval(time);
-    score = timer;
-    console.log(score);
+  clearInterval(time);
+  score = timer;
+  console.log(score);
   questionContainer.setAttribute("class", "hidden");
   victoryContainer.setAttribute("class", "visible");
-  scoreInput.innerText = "your final score: "+ score;
+  scoreInput.innerText = "your final score: " + score;
+  timerContainer.setAttribute("class", "hidden");
 }
 // ! Submit form function
-function submit(e){
- e.preventDefault();
- if (playerName.value.trim() == ""){
+
+function submit(e) {
+  e.preventDefault();
+  if (playerName.value.trim() == "") {
     alert("please insert at least one character");
- return "";
-} else {
+    return;
+  } else {
     var newScore = {
-        initials: playerName.value.trim(),
-        score: score
+      name: playerName.value.trim(),
+      score: timer,
     };
+    // console.log(newScore);
+    // console.log(scoresList);
     scoresList.push(newScore);
-    scoresList.sort(function (a,b) {return b.score - a.score});
+    
+    scoresList.sort(function (a, b) {
+      return b.score - a.score;
+    });
     localStorage.setItem("highScores", JSON.stringify(scoresList));
-}
+  }
+  printHighscores();
 }
 
 // ! Pull Leaderboard
-var scoresList =JSON.parse(localStorage.getItem("highScores"));
+var scoresPull = JSON.parse(localStorage.getItem("highScores"));
 
+// if (localStorage.getItem("highScores")) {
+//     scoresList = JSON.parse(localStorage.getItem("highScores"));
+//   } else {
+//     scoresList = [];
+//   }
+
+function printHighscores(){
+console.log(scoreList);
+console.log(scoresList);
+console.log(scoresPull);
+scoreList.innerHTML = "";
+    for(var i = 0; i < scoresList.length; i++){
+        var li = document.createElement;
+        li.innerHTML = `${scoresList[i].name} + ${scoresList[i].score}`;
+        // ${scoreOfList[i].name} + ${scoreOfList[i].score};
+        scoreList.append(li);
+    }
+    scoreContainer.setAttribute("class", "visible");
+}
 
 // console.log(answer);
-console.log(index);
-console.log(answerBtns);
+// console.log(index);
+// console.log(answerBtns);
 
 // ! when i click start,
 //* i need the first question to pop up with 4 answers

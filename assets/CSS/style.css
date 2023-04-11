@@ -108,6 +108,7 @@ button:active {
     flex-direction: column;
 }
 #victory-container{
+    padding-top: 10dvh;
     flex-direction: column;
 }
 /* #answer-container{
