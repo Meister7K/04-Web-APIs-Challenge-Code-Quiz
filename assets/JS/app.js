@@ -210,7 +210,7 @@ console.log(scoresPull);
 scoreList.innerHTML = "";
     for(var i = 0; i < scoresList.length; i++){
         var li = document.createElement;
-        li.innerHTML = `${scoresList[i].name} + ${scoresList[i].score}`;
+        li.textContent = `${scoresList[i].name} + ${scoresList[i].score}`;
         // ${scoreOfList[i].name} + ${scoreOfList[i].score};
         scoreList.append(li);
     }
