@@ -136,7 +136,7 @@ if (localStorage.getItem("highScores")) {
 function showScores() {
   header.setAttribute("class", "hidden");
   scoreContainer.setAttribute("class", "visible");
-  
+  printHighscores();
 //   console.log(scoreList);
 }
 // !Timer
@@ -204,13 +204,13 @@ var scoresPull = JSON.parse(localStorage.getItem("highScores"));
 //   }
 
 function printHighscores(){
-console.log(scoreList);
-console.log(scoresList);
-console.log(scoresPull);
-scoreList.innerHTML = "";
+// console.log(scoreList);
+// console.log(scoresList);
+// console.log(scoresPull);
+// scoreList.innerHTML = "";
     for(var i = 0; i < scoresList.length; i++){
-        var li = document.createElement;
-        li.textContent = `${scoresList[i].name} + ${scoresList[i].score}`;
+        let li = document.createElement("li");
+        li.textContent = `${scoresList[i].name} ${scoresList[i].score}`;
         // ${scoreOfList[i].name} + ${scoreOfList[i].score};
         scoreList.append(li);
     }
