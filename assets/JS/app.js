@@ -112,7 +112,7 @@ function displayQuestion() {
   answerSlotC.innerText = currentQuestion.answers[2];
   answerSlotD.innerText = currentQuestion.answers[3];
   correctAnswer = currentQuestion.solution;
-  body.style.backgroundImage = `url('../assets/Images/${images[index]}')`
+  body.style.backgroundImage = `url(../assets/Images/${images[index]})`
   //    console.log(currentQuestion);
   //    console.log(correctAnswer);
 }
@@ -173,7 +173,7 @@ function youDied() {
 
 // ! end quiz function
 function endQuiz() {
-    body.style.backgroundImage = `url('../../assets/Images/Maiden.jpg')`;
+    body.style.backgroundImage = `url(../../assets/Images/Maiden.jpg)`;
   clearInterval(time);
   score = timer;
   if(score <=0){
