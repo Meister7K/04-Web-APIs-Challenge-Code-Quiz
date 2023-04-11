@@ -24,6 +24,7 @@
             <h3 id="timer"></h3>
         </div>
         <div class="hidden" id="loser">
+            <img src="./assets/Images/you-died.gif">
             <button onclick="window.location.reload()" id="return">Retry</button>
         </div>
         
@@ -31,14 +32,25 @@
         <div class="hidden" id="question-container">
             <h1 id="question-display"></h1>
             <div id="answer-container">
-                <button class="answer-buttons" id="answer-slotA" data-number="1"></button>
-                <button class="answer-buttons" id="answer-slotB" data-number="2"></button>
-                <button class="answer-buttons" id="answer-slotC" data-number="3"></button>
-                <button class="answer-buttons" id="answer-slotD" data-number="4"></button>
+                <button class="answer-buttons" id="answer-slotA" ></button>
+                <button class="answer-buttons" id="answer-slotB" ></button>
+                <button class="answer-buttons" id="answer-slotC" ></button>
+                <button class="answer-buttons" id="answer-slotD" ></button>
             </div>
             <div id="solution-container">
                 <p id="solution-note"></p>
             </div>
+        </div>
+<!-- ! victory score div -->
+        <div class="hidden" id="victory-container">
+            <h2>Praise the Sun!</h2>
+            <p id="score-input"></p>
+            <form id="name-submission">
+                <label for="name-submission">Enter your name tarnished</label>
+                <input type="text" name="name-submission" id="player-name" value="">
+                <button type="submit" id="submit-btn">submit</button>
+            </form>
+
         </div>
 
         <script src="./assets/JS/app.js"></script>

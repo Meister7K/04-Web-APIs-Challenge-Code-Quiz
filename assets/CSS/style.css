@@ -97,6 +97,19 @@ button:active {
     white-space: normal;
     padding-bottom: 5dvh;
 }
+#loser{
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+    width:100%;
+    height: 100%;
+}
+#score-container{
+    flex-direction: column;
+}
+#victory-container{
+    flex-direction: column;
+}
 /* #answer-container{
 } */
 /* !Media Query */
