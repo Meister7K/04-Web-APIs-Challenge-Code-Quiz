@@ -127,7 +127,7 @@ answerBtns.forEach((button) => {
     } else {
       solutionNote.innerText = "Right";
     }
-    // body.style.backgroundImage = `url(../../assets/Images/${images[index]}`
+    body.style.backgroundImage = `url(../../assets/Images/${images[index]}`
     index++;
     if (index < questionsList.length) {
       displayQuestion();
