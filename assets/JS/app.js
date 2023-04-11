@@ -127,7 +127,7 @@ answerBtns.forEach((button) => {
     } else {
       solutionNote.innerText = "Right";
     }
-    body.style.backgroundImage = `url(../../assets/Images/${images[index]}`
+    // body.style.backgroundImage = `url(../Images/${images[index]}`
     index++;
     if (index < questionsList.length) {
       displayQuestion();
@@ -173,8 +173,7 @@ function youDied() {
 
 // ! end quiz function
 function endQuiz() {
-    index++;
-    body.style.backgroundImage = `url(../../assets/Images/Maiden.jpg`
+    body.style.backgroundImage = `url(../../assets/Images/Maiden.jpg`;
   clearInterval(time);
   score = timer;
   if(score <=0){
