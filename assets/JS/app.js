@@ -17,7 +17,7 @@ var timerElement = document.querySelector("#timer");
 var questionDisplay = document.querySelector("#question-display");
 var submitBtn = document.querySelector("#submit-btn");
 var playerName = document.querySelector("#player-name");
-var answerBtns = Array.from(document.getElementsByClassName("answer-buttons")); //choices
+var answerBtns = Array.from(document.getElementsByClassName("answer-buttons")); 
 var answerContainer = document.querySelector("#answer-container");
 var answerSlotA = document.querySelector("#answer-slotA");
 var answerSlotB = document.querySelector("#answer-slotB");
@@ -79,11 +79,7 @@ var questionsList = [
   },
 ];
 
-// if (localStorage.getItem("highScores")) {
-//     scoresList = JSON.parse(localStorage.getItem("highScores"));
-//   } else {
-//     scoresList = [];
-//   }
+
 // !Event Listeners
 startBtn.addEventListener("click", start);
 highscoreBtn.addEventListener("click", showScores);
@@ -113,8 +109,6 @@ function displayQuestion() {
   answerSlotD.innerText = currentQuestion.answers[3];
   correctAnswer = currentQuestion.solution;
   body.style.backgroundImage = `url(assets/Images/${images[index]})`
-  //    console.log(currentQuestion);
-  //    console.log(correctAnswer);
 }
 
 // !answer question function
@@ -127,7 +121,6 @@ answerBtns.forEach((button) => {
     } else {
       solutionNote.innerText = "Right";
     }
-    // body.style.backgroundImage = `url(../Images/${images[index]}`
     index++;
     if (index < questionsList.length) {
       displayQuestion();
@@ -148,7 +141,7 @@ function showScores() {
   header.setAttribute("class", "hidden");
   scoreContainer.setAttribute("class", "visible");
   printHighscores();
-//   console.log(scoreList);
+
 }
 // !Timer
 function startTimer() {
@@ -159,7 +152,6 @@ function startTimer() {
     if (timer <= 0) {
       clearInterval(time);
       youDied();
-      //   return "";
     }
   }, 1000);
 }
@@ -199,8 +191,6 @@ function submit(e) {
       name: playerName.value.trim(),
       score: timer,
     };
-    // console.log(newScore);
-    // console.log(scoresList);
     scoresList.push(newScore);
     
     scoresList.sort(function (a, b) {
@@ -215,21 +205,13 @@ function submit(e) {
 // ! Pull Leaderboard
 var scoresPull = JSON.parse(localStorage.getItem("highScores"));
 
-// if (localStorage.getItem("highScores")) {
-//     scoresList = JSON.parse(localStorage.getItem("highScores"));
-//   } else {
-//     scoresList = [];
-//   }
+
 
 function printHighscores(){
-// console.log(scoreList);
-// console.log(scoresList);
-// console.log(scoresPull);
-// scoreList.innerHTML = "";
+
     for(var i = 0; i < scoresList.length; i++){
         let li = document.createElement("li");
         li.textContent = `${scoresList[i].name} ${scoresList[i].score}`;
-        // ${scoreOfList[i].name} + ${scoreOfList[i].score};
         scoreList.append(li);
     }
     scoreContainer.setAttribute("class", "visible");
@@ -253,29 +235,10 @@ function printHighscores(){
 //* i need the screen to say you died
 //* i need to prompt user to try again
 // ! when quiz is over by answering all the questions,
-// i need to show the user their score (time)
-// i need to prompt user to enter name
-// i need to record name and score together on the leaderboard
-// i need to organize leaderboard by highest score
-// i need to prompt user to play again
+// *i need to show the user their score (time)
+// *i need to prompt user to enter name
+//* i need to record name and score together on the leaderboard
+// *i need to organize leaderboard by highest score
+// *i need to prompt user to play again
 
-// AS A coding boot camp student
-// I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-// Need timer (act 9/10)
-// need score holding/sharing variable
-// SO THAT I can gauge my progress compared to my peers
-// Acceptance Criteria
-// GIVEN I am taking a code quiz
-// WHEN I click the start button
-// event listener (act 11/12)
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
-// THEN I am presented with another question
-// append
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// if else function
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and my score
+
